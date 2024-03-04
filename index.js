@@ -186,6 +186,25 @@ app.post("/calculator",async (req,res)=>{
       }
 })
 
+app.get("/delete/:id", async (req,res)=>{
+    const id = parseInt(req.params.id);
+        try {
+            if (req.isAuthenticated()) {
+                await db.query("DELETE FROM records_calculator WHERE id=$1 ;", [id]);
+                res.redirect("/history");
+            }
+            else{
+                res.redirect("/login");
+            }
+          
+      
+      
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({ message: "Error deleting record" });
+        }
+    });
+
 
 passport.use(
     "local",

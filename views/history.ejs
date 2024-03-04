@@ -16,14 +16,13 @@
         width: fit-content;
     }
     .control{
-            width: 80px;
+            width: 100px;
             height: 40px;
             margin: 10px;
             border: 1px solid #1f5f8a;
             font-size: 18px;
             margin-top: 10px;
             cursor: pointer;
-            
             border-radius: 4px;
             background-color: #3498db;
             color: #fff;
@@ -32,18 +31,42 @@
         }
         .control:hover {
             background-color: #2980b9;
+            
         }
-
-
+        #delete{
+            background-color:rgb(230, 39, 39);
+            border: 1px solid #ed520f;
+        }
+        #delete:hover{
+            background-color: #980000;
+        }
+        #upper_btn{
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
+    <br>
+    <br>
+    <div id="upper_btn">
+        <form action="/" method="get">
+            <input type="submit" value="Home" class="control">
+        </form>
+        <form action="/calculator" method="get">
+            <input type="submit" value="Calculator" class="control">
+        </form>
+    </div>
+    <br>
     <div class="container">
         <% if(locals.list){ %>
         <h1>Your previous calculations</h1>
         <% let n=locals.list.length; %>
         <% for(let i=n-1;i>=0;i--){ %>
             <h3><%= n-i %>. Expression: <%= list[i].expression %></h3>
+            
+            <form action="/delete/<%= list[i].id %>" method="get">
+                <input type="submit" value="Delete" class="control" id="delete">
+            </form>
             <br>
             <hr>
 
@@ -56,9 +79,7 @@
             <% } %>
 
             
-            <form action="/" method="get">
-                <input type="submit" value="Home" class="control">
-            </form>
+            
     </div>
             
 </body>
