@@ -41,8 +41,8 @@ const db = new pg.Client({
 db.connect();
 
 app.get("/",async (req,res)=>{
-     await db.query("CREATE TABLE users_calculator(id SERIAL PRIMARY KEY,email VARCHAR(100) NOT NULL UNIQUE,password VARCHAR(100) );");
-   await db.query("CREATE TABLE records_calculator(id SERIAL PRIMARY KEY,email VARCHAR(100) NOT NULL,expression VARCHAR(100))");
+//      await db.query("CREATE TABLE users_calculator(id SERIAL PRIMARY KEY,email VARCHAR(100) NOT NULL UNIQUE,password VARCHAR(100) );");
+//    await db.query("CREATE TABLE records_calculator(id SERIAL PRIMARY KEY,email VARCHAR(100) NOT NULL,expression VARCHAR(100))");
     res.sendFile(__dirname+"/home.html");
     //
 })
