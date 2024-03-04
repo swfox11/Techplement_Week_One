@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: bisque;
+        }
+
+        h1 {
+            color: #7e0658;
+        }
+
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #3498db;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .control{
+            width: 120px;
+            height: 40px;
+            margin: 10px;
+            border: 1px solid #1f5f8a;
+            font-size: 18px;
+            margin-top: 10px;
+            cursor: pointer;
+            
+            border-radius: 4px;
+            background-color: #3498db;
+            color: #fff;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .control:hover {
+            background-color: #2980b9;
+        }
+        fieldset{
+         display: inline-block;
+         height: 90px;
+         width: 300px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Online Calculator</h1>
+    
+    
+        <form action="/signup" method="get">
+        <fieldset>
+            <legend>For New Users </legend>
+            
+            <button type="submit" >Sign Up</button>
+        </fieldset>
+        </form>
+        <br>
+        <br>
+        <form action="/login" method="get">
+        <fieldset>
+            <legend>For Existing Users</legend>
+            <button type="submit" >Log In</button>
+            
+        </fieldset>
+        </form>
+
+        <form action="/calculator" method="get">
+            <input type="submit" value="Calculator" class="control">
+        </form>
+
+</body>
+</html>

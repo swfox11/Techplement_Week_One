@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <style>
+    body{
+        text-align: center;
+        background-color: black;
+        color: aliceblue;
+    }
+    .container{
+        text-align: left;
+        margin: auto;
+        width: fit-content;
+    }
+    .control{
+            width: 80px;
+            height: 40px;
+            margin: 10px;
+            border: 1px solid #1f5f8a;
+            font-size: 18px;
+            margin-top: 10px;
+            cursor: pointer;
+            
+            border-radius: 4px;
+            background-color: #3498db;
+            color: #fff;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .control:hover {
+            background-color: #2980b9;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <% if(locals.list){ %>
+        <h1>Your previous calculations</h1>
+        <% let n=locals.list.length; %>
+        <% for(let i=n-1;i>=0;i--){ %>
+            <h3><%= n-i %>. Expression: <%= list[i].expression %></h3>
+            <br>
+            <hr>
+
+        <% } %>
+
+
+        <% }else{ %>
+            <h1>You Don't have any saved calculations.</h1>
+ 
+            <% } %>
+
+            
+            <form action="/" method="get">
+                <input type="submit" value="Home" class="control">
+            </form>
+    </div>
+            
+</body>
+</html>

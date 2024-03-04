@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        h1{
+            margin-right: 26px;
+        }
+        body {
+            
+            text-align: center;
+            margin-top: 50px;
+            background-color: bisque;
+            background:url("https://wallpapers.com/images/high/red-and-blue-calculators-yxm0myfzuym67431.webp") center bisque ;
+            
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+        }
+
+        input {
+            width: 69px;
+            margin: 5px;
+            padding: 5px;
+            font-size: 20px;
+        }
+        .control{
+            width: 80px;
+            height: 40px;
+            margin: 10px;
+            border: 1px solid #1f5f8a;
+            font-size: 18px;
+            margin-top: 10px;
+            cursor: pointer;
+            
+            border-radius: 4px;
+            background-color: #3498db;
+            color: #fff;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .control:hover {
+            background-color: #2980b9;
+        }
+        #result {
+            
+            width: 300px;
+            height: 30px;
+            font-weight: bold;
+        }
+        #keypad {
+            
+            width: 350px;
+        }
+        .bottom{
+            display: inline-block;
+            margin-right: 27px;
+            margin-top: 20px;
+
+        }
+        .calculator
+        {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body >
+    <h1>Online Calculator</h1>
+    <form action="/calculator" method="post" name="calculator" class="calculator">
+        <input type="text" name="display" id="result" readonly >
+        <div id="keypad">
+            <br>
+            <input type="button" value="1" onclick="calculator.display.value += '1'">
+            <input type="button" value="2" onclick="calculator.display.value += '2'">
+            <input type="button" value="3" onclick="calculator.display.value += '3'">
+            <input type="button" value="/" onclick="calculator.display.value += '/'">
+            <br>
+            <input type="button" value="4" onclick="calculator.display.value += '4'">
+            <input type="button" value="5" onclick="calculator.display.value += '5'">
+            <input type="button" value="6" onclick="calculator.display.value += '6'">
+            <input type="button" value="-" onclick="calculator.display.value += '-'">
+            <br>
+            <input type="button" value="7" onclick="calculator.display.value += '7'">
+            <input type="button" value="8" onclick="calculator.display.value += '8'">
+            <input type="button" value="9" onclick="calculator.display.value += '9'">
+            <input type="button" value="+" onclick="calculator.display.value += '+'">
+            <br>
+            <input type="button" value="C" onclick="calculator.display.value = ''">
+            <input type="button" value="0" onclick="calculator.display.value += '0'">
+            <input type="button" value="." onclick="calculator.display.value += '.'">
+            <input type="button" value="x" onclick="calculator.display.value += '*'">
+            <br>
+        </div>
+        <input type="button" value="=" onclick="calculator.display.value = eval(calculator.display.value)">
+        <input type="submit" value="Save" >
+        
+    </form>
+<br>
+
+  <div class="bottom">
+    <form action="/history" method="get">
+        <input type="submit" value="History" class="control">
+    </form>
+
+    <form action="/logout" method="get">
+        <input type="submit" value="Log Out" class="control">
+    </form>
+
+    <form action="/" method="get">
+        <input type="submit" value="Home" class="control">
+    </form>
+ </div>
+
+
+</body>
+</html>
