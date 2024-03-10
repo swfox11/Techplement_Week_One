@@ -1,29 +1,29 @@
-// import 'dotenv/config';
-// import express from "express";
-// import bodyParser from "body-parser";
-// import { dirname } from "path";
-// import { fileURLToPath } from "url";
-// import pg from "pg";
-// import bcrypt from "bcrypt";
-// import passport from "passport";
-// import { Strategy } from "passport-local";
-// import session from "express-session";
+import 'dotenv/config';
+import express from "express";
+import bodyParser from "body-parser";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import pg from "pg";
+import bcrypt from "bcrypt";
+import passport from "passport";
+import { Strategy } from "passport-local";
+import session from "express-session";
 
-require('dotenv').config();
-const express= require("express");
-const bodyParser =require("body-parser");
- const { dirname } =require ("path");
- const { fileURLToPath } =require("url");
- const pg =require("pg");
- const bcryptjs =require ("bcryptjs");
- const passport =require ("passport");
- const { Strategy } =require ("passport-local");
- const session = require("express-session");
+// require('dotenv').config();
+// const express= require("express");
+// const bodyParser =require("body-parser");
+//  const { dirname } =require ("path");
+//  const { fileURLToPath } =require("url");
+//  const pg =require("pg");
+//  const bcryptjs =require ("bcryptjs");
+//  const passport =require ("passport");
+//  const { Strategy } =require ("passport-local");
+//  const session = require("express-session");
  
 
 
 const app = express();
-//const __dirname = dirname(fileURLToPath(require.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = process.env.SERVER_PORT;
 const saltRounds = 10;
 
@@ -148,8 +148,8 @@ app.post("/signup", async (req, res) => {
   
         res.render("login.ejs",{ message: "User already exists. Please LogIn." });
       } else {
-        bcryptjs.genSalt(saltRounds, function(err, salt) {
-          bcryptjs.hash(password, saltRounds, async (err, hash) => {
+        
+          bcrypt.hash(password, saltRounds, async (err, hash) => {
             if (err) {
               console.error("Error hashing password:", err);
             } else {
@@ -169,7 +169,7 @@ app.post("/signup", async (req, res) => {
               });
             }
           });
-      });
+     
         
       // bcryptjs.hash(password, saltRounds, async (err, hash) => {
       //   if (err) {
@@ -257,7 +257,7 @@ passport.use(
           const user = result.rows[0];
         //   console.log("in login stragey",user,username,password);
           const storedHashedPassword = user.password;
-          bcryptjs.compare(password, storedHashedPassword, (err, valid) => {
+          bcrypt.compare(password, storedHashedPassword, (err, valid) => {
             if (err) {
               console.error("Error comparing passwords:", err);
               return cb(err);
@@ -294,5 +294,5 @@ passport.use(
 app.listen(port,()=>{
     console.log(`server listening at port ${port}`);
 })
-module.exports=app;
-//export default app;
+//module.exports=app;
+export default app;
