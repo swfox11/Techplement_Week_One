@@ -15,7 +15,7 @@ const bodyParser =require("body-parser");
  const { dirname } =require ("path");
  const { fileURLToPath } =require("url");
  const pg =require("pg");
- const bcrypt =require ("bcrypt");
+ const bcryptjs =require ("bcryptjs");
  const passport =require ("passport");
  const { Strategy } =require ("passport-local");
  const session = require("express-session");
@@ -148,26 +148,51 @@ app.post("/signup", async (req, res) => {
   
         res.render("login.ejs",{ message: "User already exists. Please LogIn." });
       } else {
-        bcrypt.hash(password, saltRounds, async (err, hash) => {
-          if (err) {
-            console.error("Error hashing password:", err);
-          } else {
-            const result = await db.query(
-              "INSERT INTO users_calculator (email , password) VALUES ($1, $2) RETURNING *",
-              [email,hash]
-            );
-            const user = result.rows[0];
-            console.log("here",user);
-            req.login(user, (err) => {
-              if(err)
-              {
-                console.log(err);
-              }
-              console.log("success");
-              res.redirect("/calculator");
-            });
-          }
-        });
+        bcryptjs.genSalt(saltRounds, function(err, salt) {
+          bcryptjs.hash(password, saltRounds, async (err, hash) => {
+            if (err) {
+              console.error("Error hashing password:", err);
+            } else {
+              const result = await db.query(
+                "INSERT INTO users_calculator (email , password) VALUES ($1, $2) RETURNING *",
+                [email,hash]
+              );
+              const user = result.rows[0];
+              console.log("here",user);
+              req.login(user, (err) => {
+                if(err)
+                {
+                  console.log(err);
+                }
+                console.log("success");
+                res.redirect("/calculator");
+              });
+            }
+          });
+      });
+        
+      // bcryptjs.hash(password, saltRounds, async (err, hash) => {
+      //   if (err) {
+      //     console.error("Error hashing password:", err);
+      //   } else {
+      //     const result = await db.query(
+      //       "INSERT INTO users_calculator (email , password) VALUES ($1, $2) RETURNING *",
+      //       [email,hash]
+      //     );
+      //     const user = result.rows[0];
+      //     console.log("here",user);
+      //     req.login(user, (err) => {
+      //       if(err)
+      //       {
+      //         console.log(err);
+      //       }
+      //       console.log("success");
+      //       res.redirect("/calculator");
+      //     });
+      //   }
+      // });
+
+
       }
     } catch (err) {
       console.log(err);
@@ -232,7 +257,7 @@ passport.use(
           const user = result.rows[0];
         //   console.log("in login stragey",user,username,password);
           const storedHashedPassword = user.password;
-          bcrypt.compare(password, storedHashedPassword, (err, valid) => {
+          bcryptjs.compare(password, storedHashedPassword, (err, valid) => {
             if (err) {
               console.error("Error comparing passwords:", err);
               return cb(err);
