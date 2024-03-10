@@ -256,3 +256,4 @@ passport.use(
 app.listen(port,()=>{
     console.log(`server listening at port ${port}`);
 })
+export default app;
