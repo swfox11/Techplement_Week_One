@@ -1,16 +1,29 @@
-import 'dotenv/config';
-import express from "express";
-import bodyParser from "body-parser";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import pg from "pg";
-import bcrypt from "bcrypt";
-import passport from "passport";
-import { Strategy } from "passport-local";
-import session from "express-session";
+// import 'dotenv/config';
+// import express from "express";
+// import bodyParser from "body-parser";
+// import { dirname } from "path";
+// import { fileURLToPath } from "url";
+// import pg from "pg";
+// import bcrypt from "bcrypt";
+// import passport from "passport";
+// import { Strategy } from "passport-local";
+// import session from "express-session";
+
+require('dotenv').config();
+const express= require("express");
+const bodyParser =require("body-parser");
+ const { dirname } =require ("path");
+ const { fileURLToPath } =require("url");
+ const pg =require("pg");
+ const bcrypt =require ("bcrypt");
+ const passport =require ("passport");
+ const { Strategy } =require ("passport-local");
+ const session = require("express-session");
+ 
+
 
 const app = express();
-const __dirname = dirname(fileURLToPath(import.meta.url));
+//const __dirname = dirname(fileURLToPath(require.meta.url));
 const port = process.env.SERVER_PORT;
 const saltRounds = 10;
 
@@ -256,4 +269,5 @@ passport.use(
 app.listen(port,()=>{
     console.log(`server listening at port ${port}`);
 })
-export default app;
+module.exports=app;
+//export default app;
