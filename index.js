@@ -24,7 +24,7 @@ import session from "express-session";
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const port = process.env.SERVER_PORT;
+const port = process.env.PORT;
 const saltRounds = 10;
 
 
